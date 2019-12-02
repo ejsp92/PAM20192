@@ -4,6 +4,7 @@ import seaborn as sns
 import pandas as pd
 import scipy.stats
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
@@ -33,8 +34,9 @@ shape_view = shape_view[:,[0,1,5,6,7,8]]
 rgb_view = data.values[:, 9:19]
 
 # Normalize data
-rgb_view = minmax_scale(rgb_view, feature_range=(0, 1), axis=0)
-shape_view = minmax_scale(shape_view, feature_range=(0, 1), axis=0)
+scaler = MinMaxScaler()
+rgb_view = scaler.fit_transform(rgb_view)
+shape_view = scaler.fit_transform(shape_view)
 
 L = 2
 K = 7
