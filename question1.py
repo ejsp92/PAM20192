@@ -4,7 +4,7 @@ import math
 import os
 import shutil
 from scipy.spatial.distance import pdist
-from sklearn.preprocessing import minmax_scale
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import adjusted_rand_score
 
 # TODO Plotar grafico PCA para resultado
@@ -34,8 +34,9 @@ rgb_view = data.values[:, 9:19]
 shape_view = shape_view[:,[0,1,5,6,7,8]]
 
 # Normalize data
-rgb_view = minmax_scale(rgb_view, feature_range=(0, 1), axis=0)
-shape_view = minmax_scale(shape_view, feature_range=(0, 1), axis=0)
+scaler = MinMaxScaler()
+rgb_view = scaler.fit_transform(rgb_view)
+shape_view = scaler.fit_transform(shape_view)
 
 data = {'rgb': rgb_view, 'shape': shape_view}
 
