@@ -38,7 +38,7 @@ scaler = MinMaxScaler()
 rgb_view = scaler.fit_transform(rgb_view)
 shape_view = scaler.fit_transform(shape_view)
 
-data = {'rgb': rgb_view, 'shape': shape_view}
+data = {'rgb': rgb_view}
 
 # Number of Clusters
 c = 7
@@ -75,7 +75,7 @@ for name, view in data.items():
     best_J = float("inf")
     best_rand = 0
 
-    for epoch in range(ep):
+    for epoch in range(50, 75):
         print("epoch ", epoch+1)
         
         # Randomly initialize the fuzzy membership degree
@@ -202,21 +202,3 @@ for name, view in data.items():
                 i += 1
         print("rand: " + str(rand))
         print("Best rand: " + str(best_rand))
-    
-
-
-
-        
-        
-
-
-
-
-
-        
-
-
-
-
-
-
